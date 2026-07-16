@@ -19,8 +19,8 @@ class Solution {
             return true;
         }
 
-        int left_height = getHeight (root.left);
-        int right_height = getHeight (root.right);
+        int left_height = height (root.left);
+        int right_height = height (root.right);
 
         if (Math.abs(left_height - right_height) > 1 ){
             return false;
@@ -30,11 +30,24 @@ class Solution {
 
     }
 
-    private int getHeight(TreeNode root){
-        if (root == null ) {return 0;}
-        int left_height = (getHeight(root.left));
-        int right_height = (getHeight(root.right));
+    private int height(TreeNode root){
 
-        return Math.max(left_height, right_height) + 1 ;
-    }
+    if(root==null)
+        return 0;
+
+    int left=height(root.left);
+
+    if(left==-1)
+        return -1;
+
+    int right=height(root.right);
+
+    if(right==-1)
+        return -1;
+
+    if(Math.abs(left-right)>1)
+        return -1;
+
+    return Math.max(left,right)+1;
+}
 }
